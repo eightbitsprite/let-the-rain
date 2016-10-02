@@ -14,15 +14,22 @@ return {
   frame_duration = .75,
   
   animations_names = {
-    "float"
+    "float",
+    "rain"
   },
   
   animations = {
     float = {
-      love.graphics.newQuad(0,0,16,16,width,height),
-      love.graphics.newQuad(16,0,16,16,width,height),
-      love.graphics.newQuad(32,0,16,16,width,height),
-      love.graphics.newQuad(48,0,16,16,width,height)
+      love.graphics.newQuad(0,0,16,24,width,height),
+      love.graphics.newQuad(16,0,16,24,width,height),
+      love.graphics.newQuad(32,0,16,24,width,height),
+      love.graphics.newQuad(48,0,16,24,width,height)
+    },
+    rain = {
+      love.graphics.newQuad(0,24,16,24,width,height),
+      love.graphics.newQuad(16,24,16,24,width,height),
+      love.graphics.newQuad(32,24,16,24,width,height),
+      love.graphics.newQuad(48,24,16,24,width,height)
     }
   }
 }

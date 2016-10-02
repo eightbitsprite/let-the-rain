@@ -1,5 +1,6 @@
 --[[
 CScreen v1.3 by CodeNMore
+(EDITS MADE BY EIGHTBITSPRITE)
 A simple way to make resolution-independent Love2D games
 Tested for LOVE 0.10.1
 See: https://github.com/CodeNMore/CScreen
@@ -96,6 +97,9 @@ function CScreen.setColor(r, g, b, a)
 	ca = a
 end
 
+--[[  new function newImage makes scaling 'nearest'
+--  instead of 'linear'
+--  ]]
 function CScreen.newImage(filename)
   image = love.graphics.newImage(filename)
   image:setFilter("nearest","nearest")

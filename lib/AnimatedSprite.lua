@@ -79,7 +79,7 @@ function LoadSprite (sprite_def)
     return sprite_bank [sprite_def]
 end
 
-function GetInstance (sprite_def)
+function GetInstance (sprite_def, anim_no)
 
     if sprite_def == nil then return nil end -- invalid use
     
@@ -88,11 +88,14 @@ function GetInstance (sprite_def)
         if LoadSprite (sprite_def) == nil then return nil end
     end
     
+    anim = anim_no or 1
+    
     --All set, return the default table.
     return {
         sprite = sprite_bank[sprite_def], --Sprite reference
         --Sets the animation as the first one in the list.
-        curr_anim = sprite_bank[sprite_def].animations_names[1],
+        curr_anim = sprite_bank[sprite_def].animations_names[anim],
+        
         curr_frame = 1,
         elapsed_time = 0,
         size_scale = 1,
@@ -103,10 +106,17 @@ function GetInstance (sprite_def)
     }
 end
 
-function UpdateInstance(spr, dt)
+function UpdateInstance(spr, dt, anim_name)
     --Increment the internal counter.
     spr.elapsed_time = spr.elapsed_time + dt
-
+    
+    --check to see if anim_no is different (if supplied)
+    anim = anim_name or ""
+    if (anim ~= "") and (spr.curr_anim ~= anim) then
+      spr.curr_anim = anim
+      --spr.curr_frame = 1
+    end
+    
     --We check we need to change the current frame.
     if spr.elapsed_time > spr.sprite.frame_duration * spr.time_scale then
         --Check if we are at the last frame.

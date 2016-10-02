@@ -8,20 +8,26 @@ function playerControl(dt, player)
       player.x = player.x - (player.speed*dt)
     end
   elseif love.keyboard.isDown('right', 'd') then
-    player.x = player.x + (player.speed*dt)
+    if canMove('right', player.dim, {player.x, player.y}) then
+      player.x = player.x + (player.speed*dt)
+    end
   end
   
   if love.keyboard.isDown('up', 'w') then
-    player.y = player.y - (player.speed*dt)
+    if canMove('up', player.dim, {player.x, player.y}) then
+      player.y = player.y - (player.speed*dt)
+    end
   elseif love.keyboard.isDown('down', 's') then
-    player.y = player.y + (player.speed*dt)
+    if canMove('down', player.dim, {player.x, player.y}) then
+      player.y = player.y + (player.speed*dt)
+    end
   end
 end
 
 --direction = movement direction; dim = dimension
 function canMove(direction, dim, loc)
-  local Width = love.graphics.getWidth()
-  local Height = love.graphics.getHeight()
+  local Width = screenWidth --love.graphics.getWidth()
+  local Height = screenHeight --love.graphics.getHeight()
   local dimx, dimy = unpack(dim)
   local locx, locy = unpack(loc)
   local result = false
